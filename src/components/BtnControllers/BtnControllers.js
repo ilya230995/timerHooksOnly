@@ -30,7 +30,7 @@ function BtnControllers({
 
   return (
     <div className={s.controllers}>
-      {!onPause ? (
+      {onPause ? (
         <button className={s.btnCntr} onClick={startTimer}>
           start
         </button>

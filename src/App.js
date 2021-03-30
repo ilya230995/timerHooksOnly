@@ -3,28 +3,32 @@ import TimerDisplay from "./components/TimerDisplay/TimerDisplay";
 
 function App() {
   const [seconds, setSeconds] = useState(0);
-  const [onPause, setOnPause] = useState(false);
+  const [onPause, setOnPause] = useState(true);
 
   const increament = useRef(0);
 
   const startTimer = () => {
-    setOnPause(true);
+    setOnPause(false);
     increament.current = setInterval(() => {
       setSeconds((prevState) => prevState + 1);
     }, 1000);
   };
   const stopTimer = () => {
-    setOnPause(false);
+    setOnPause(true);
     clearInterval(increament.current);
     setSeconds(0);
   };
 
   const resetTimer = () => {
+    if (onPause) {
+      setSeconds(0);
+      startTimer();
+    }
     setSeconds(0);
   };
   const pauseTimer = () => {
     clearInterval(increament.current);
-    setOnPause(false);
+    setOnPause(true);
   };
 
   return (
